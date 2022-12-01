@@ -15,7 +15,6 @@ const maxCalories = () => {
   });
   sums.sort((a, b) => b - a);
   let sumOfThree = sums.slice(0, 3);
-  console.log(sums);
 
   console.log("Max: ", Math.max(...sums));
   console.log(
@@ -23,3 +22,4 @@ const maxCalories = () => {
     sumOfThree.reduce((a, b) => a + b, 0)
   );
 };
+maxCalories();

@@ -20,9 +20,10 @@
   let pointsCount = 0;
   let pointsWithStrategy = 0;
 
+  const calculatePoints = (player1, player2) => {};
   allFileContents.split(/\r?\n/).forEach((line) => {
     const [player, you] = line.split(" ");
-
+    //------------- PART 1 ------------------//
     if (player === "A") {
       if (you === "X") {
         pointsCount += POINTS.rock + POINTS.draw;
@@ -50,6 +51,8 @@
         pointsCount += POINTS.scissors + POINTS.draw;
       }
     }
+
+    //------------- PART 2 ------------------//
 
     if (you === "X") {
       if (player === "A") {

@@ -1,10 +1,14 @@
 (() => {
   const fs = require("fs");
+  const allFileContents = fs.readFileSync("./input.txt", "utf-8");
 
   const RPC = {
     A: "rock",
+    X: "rock",
     B: "paper",
+    Y: "paper",
     C: "scissors",
+    Z: "scissors",
   };
   const POINTS = {
     rock: 1,
@@ -15,42 +19,20 @@
     win: 6,
   };
 
-  const allFileContents = fs.readFileSync("./input.txt", "utf-8");
-
   let pointsCount = 0;
   let pointsWithStrategy = 0;
 
-  const calculatePoints = (player1, player2) => {};
+  const winCases = ["YA", "ZB", "XC"];
+  const drawCases = ["XA", "YB", "ZC"];
+  const loseCases = ["ZA", "XB", "YC"];
+
   allFileContents.split(/\r?\n/).forEach((line) => {
     const [player, you] = line.split(" ");
     //------------- PART 1 ------------------//
-    if (player === "A") {
-      if (you === "X") {
-        pointsCount += POINTS.rock + POINTS.draw;
-      } else if (you === "Y") {
-        pointsCount += POINTS.paper + POINTS.win;
-      } else if (you === "Z") {
-        pointsCount += POINTS.scissors + POINTS.lose;
-      }
-    }
-    if (player === "B") {
-      if (you === "X") {
-        pointsCount += POINTS.rock + POINTS.lose;
-      } else if (you === "Y") {
-        pointsCount += POINTS.paper + POINTS.draw;
-      } else if (you === "Z") {
-        pointsCount += POINTS.scissors + POINTS.win;
-      }
-    }
-    if (player === "C") {
-      if (you === "X") {
-        pointsCount += POINTS.rock + POINTS.win;
-      } else if (you === "Y") {
-        pointsCount += POINTS.paper + POINTS.lose;
-      } else if (you === "Z") {
-        pointsCount += POINTS.scissors + POINTS.draw;
-      }
-    }
+    pointsCount += POINTS[RPC[you]];
+    if (winCases.includes(you + player)) pointsCount += POINTS.win;
+    if (drawCases.includes(you + player)) pointsCount += POINTS.draw;
+    if (loseCases.includes(you + player)) pointsCount += POINTS.lose;
 
     //------------- PART 2 ------------------//
 

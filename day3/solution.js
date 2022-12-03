@@ -5,30 +5,20 @@ const split = (str, index) => {
 };
 
 const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-(() => {
-  const fs = require("fs");
-  const allFileContents = fs.readFileSync("./input.txt", "utf-8");
-  // -------------- part 1 --------------
-  const sharedItems = [];
-  const sum = [];
+const part1 = (allFileContents) => {
+  let sum = 0;
   allFileContents.split(/\r?\n/).forEach((backpack) => {
     const [first, second] = split(backpack, backpack.length / 2);
     let sharedItem;
-    for (let i = 0; i < first.length; i++) {
-      for (let j = 0; j < second.length; j++) {
-        if (first[i] === second[j]) {
-          sharedItem = first[i];
-        }
-      }
-    }
-    sharedItems.push(sharedItem);
+    first.split("").map((letter) => {
+      if (second.includes(letter)) sharedItem = letter;
+    });
+    sum += alphabet.indexOf(sharedItem) + 1;
   });
 
-  sum.push(sharedItems.reduce((a, b) => a + alphabet.indexOf(b) + 1, 0));
-
-  console.log("sum: ", ...sum);
-  // -------------- part 2 --------------
-
+  console.log("sum: ", sum);
+};
+const part2 = (allFileContents) => {
   const group = [];
   const allGroups = [];
   allFileContents.split(/\r?\n/).forEach((backpack) => {
@@ -38,26 +28,23 @@ const alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
       group.length = 0;
     }
   });
-  const badges = [];
+  let sumOfVadges = 0;
   allGroups.forEach((group) => {
     let sharedItem = "";
     const [first, second, third] = group;
-    for (let k = 0; k < first.length; k++) {
-      for (let i = 0; i < second.length; i++) {
-        for (let j = 0; j < third.length; j++) {
-          if (first[k] === second[i]) {
-            if (first[k] === third[j]) {
-              sharedItem = first[k];
-            }
-          }
-        }
-      }
-    }
-    badges.push(sharedItem);
+    first.split("").map((letter) => {
+      if (second.includes(letter) && third.includes(letter))
+        sharedItem = letter;
+    });
+    sumOfVadges += alphabet.indexOf(sharedItem) + 1;
   });
 
-  console.log(
-    "badges: ",
-    badges.reduce((a, b) => a + alphabet.indexOf(b) + 1, 0)
-  );
+  console.log("badges: ", sumOfVadges);
+};
+
+(() => {
+  const fs = require("fs");
+  const allFileContents = fs.readFileSync("./input.txt", "utf-8");
+  part1(allFileContents);
+  part2(allFileContents);
 })();

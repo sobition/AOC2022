@@ -28,7 +28,7 @@ const part2 = (allFileContents) => {
       group.length = 0;
     }
   });
-  let sumOfVadges = 0;
+  let sumOfBadges = 0;
   allGroups.forEach((group) => {
     let sharedItem = "";
     const [first, second, third] = group;
@@ -36,10 +36,10 @@ const part2 = (allFileContents) => {
       if (second.includes(letter) && third.includes(letter))
         sharedItem = letter;
     });
-    sumOfVadges += alphabet.indexOf(sharedItem) + 1;
+    sumOfBadges += alphabet.indexOf(sharedItem) + 1;
   });
 
-  console.log("badges: ", sumOfVadges);
+  console.log("badges: ", sumOfBadges);
 };
 
 (() => {

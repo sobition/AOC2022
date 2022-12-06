@@ -1,14 +1,11 @@
 const hasDuplicates = (array) => {
-  var valuesSoFar = Object.create(null);
-  for (var i = 0; i < array.length; ++i) {
-    var value = array[i];
-    if (value in valuesSoFar) {
-      return true;
-    }
-    valuesSoFar[value] = true;
+  if (array.length !== new Set(array).size) {
+    return true;
   }
+
   return false;
 };
+
 const startFinder = (string, len) => {
   let result = 0;
   string.split(/\r?\n/).forEach((line) => {
@@ -22,6 +19,7 @@ const startFinder = (string, len) => {
   });
   return result;
 };
+
 (() => {
   const fs = require("fs");
   const allFileContents = fs.readFileSync("./input.txt", "utf-8");

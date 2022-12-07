@@ -15,8 +15,6 @@
             current.push(arg);
           }
           break;
-        case "ls":
-          break;
       }
     } else {
       let file = line.split(" ");
@@ -28,18 +26,11 @@
           if (dir === "/") {
             dirs["/"] += Number(line.split(" ")[0]);
           }
-          if (
-            current
-              .slice(0, index + 1)
-              .join("/")
-              .slice(1)
-          )
-            dirs[
-              current
-                .slice(0, index + 1)
-                .join("/")
-                .slice(1)
-            ] += Number(line.split(" ")[0]);
+          const newPath = current
+            .slice(0, index + 1)
+            .join("/")
+            .slice(1);
+          if (newPath) dirs[newPath] += Number(line.split(" ")[0]);
         });
       }
     }

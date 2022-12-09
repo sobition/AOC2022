@@ -1,6 +1,6 @@
 # Advent of Code Solutions 🎄
 
-[![Number of solved puzzles](https://img.shields.io/github/directory-file-count/sobition/AOC2022?extension=txt)](#)
+<!-- [![Number of solved puzzles](https://img.shields.io/github/directory-file-count/sobition/AOC2022?extension=txt)](#) -->
 <!-- API of my own Vercel deployment: https://adventofcode-badge-vert.vercel.app/api/ -->
 [![GitHub language count](https://img.shields.io/github/languages/count/sobition/AOC2022)](#)
 [![GitHub top language](https://img.shields.io/github/languages/top/sobition/AOC2022)](#)

@@ -55,12 +55,12 @@ const part2 = (input) => {
       stepsArr.push(steps);
     }
     const neighbors = getNeighbors(currentPoint, mapDimension);
-    const possibleValues = neighbors.filter(
+    const possiblePaths = neighbors.filter(
       (point) =>
         elevMap[point[0]][point[1]] >=
         elevMap[currentPoint[0]][currentPoint[1]] - 1
     );
-    queue = queue.concat(possibleValues.map((point) => [point, steps + 1]));
+    queue = queue.concat(possiblePaths.map((point) => [point, steps + 1]));
   }
   console.log("part2:", Math.min(...stepsArr));
 };
@@ -81,12 +81,12 @@ const part1 = (input) => {
     }
 
     const neighbors = getNeighbors(currentPoint, mapDimension);
-    const possibleValues = neighbors.filter(
+    const possiblePaths = neighbors.filter(
       (point) =>
         elevMap[point[0]][point[1]] <=
         elevMap[currentPoint[0]][currentPoint[1]] + 1
     );
-    queue = queue.concat(possibleValues.map((point) => [point, steps + 1]));
+    queue = queue.concat(possiblePaths.map((point) => [point, steps + 1]));
   }
 };
 

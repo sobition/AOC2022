@@ -111,8 +111,8 @@ const part2 = (steps) => {
     ]
   );
 
-  const totalMarks = Object.keys(tailMarks).reduce(
-    (sum, x) => sum + Object.keys(tailMarks[x]).length,
+  const totalMarks = Object.keys(marksOntheRope).reduce(
+    (sum, x) => sum + Object.keys(marksOntheRope[x]).length,
     0
   );
   console.log("part2:", totalMarks);
